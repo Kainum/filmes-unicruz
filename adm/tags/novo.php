@@ -1,14 +1,14 @@
 <?php
     require_once '../protect.php';
 
-    use controllers\Atores_Controller;
+    use controllers\Tags_Controller;
 
-    require_once '../../controllers/atores_controller.php';
+    require_once '../../controllers/tags_controller.php';
 
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method == 'GET') {
-        $title = "Cadastrar Ator";
+        $title = "Cadastrar Tag";
         $childView = "./views/form.php";
         $action = "novo";
         include("../layout.php");
@@ -19,13 +19,13 @@
 
     function Criar () {
         // adicionar no banco
-        $controller = new Atores_Controller();
+        $controller = new Tags_Controller();
         $controller->Create($_POST);
 
         // redireciona para o index
         require("../config.php");
-        header("Location: $BASE_URL/atores");
-        die();
+        header("Location: $BASE_URL/tags");
+        // die();
     }
     
 ?>

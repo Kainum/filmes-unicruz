@@ -6,6 +6,7 @@ class Connection {
     private const password = "";
     private const dbname = "teste";
 
+    // Singleton
     private static $conn;
 
     public static function GetConnection () {

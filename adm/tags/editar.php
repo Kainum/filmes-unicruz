@@ -1,18 +1,18 @@
 <?php
     require_once '../protect.php';
 
-    use controllers\Atores_Controller;
+    use controllers\Tags_Controller;
 
-    require_once '../../controllers/atores_controller.php';
+    require_once '../../controllers/tags_controller.php';
 
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method == 'GET') {
-        $title = "Editar Ator";
+        $title = "Editar Tag";
         $childView = "./views/form.php";
         $action = "editar";
 
-        $controller = new Atores_Controller();
+        $controller = new Tags_Controller();
         $obj = $controller->Get($_GET['id']);
         
         include("../layout.php");
@@ -23,12 +23,12 @@
 
     function Atualizar () {
         // atualiza no banco
-        $controller = new Atores_Controller();
+        $controller = new Tags_Controller();
         $controller->Update($_POST);
 
         // redireciona para o index
         require("../config.php");
-        header("Location: $BASE_URL/atores");
+        header("Location: $BASE_URL/tags");
         die();
     }
     

@@ -23,6 +23,7 @@
             <a class="text-white" href=<?= "$BASE_URL/" ?>>HOME</a>
             <a class="text-white" href=<?= "$BASE_URL/atores/" ?>>Atores</a>
             <a class="text-white" href=<?= "$BASE_URL/filmes/" ?>>Filmes</a>
+            <a class="text-white" href=<?= "$BASE_URL/tags/" ?>>Tags</a>
             <a class="text-white" href=<?= "$BASE_URL/usuarios/" ?>>Usuários</a>
         </nav>
     </header>
