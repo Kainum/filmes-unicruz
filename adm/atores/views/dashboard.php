@@ -16,7 +16,7 @@
             <td><?= $ator["nome"] ?></td>
             <td><?= FormatarData($ator["data_nascimento"]) ?></td>
             <td class="text-capitalize"><?= $ator["nacionalidade"] ?></td>
-            <td><?= $ator["sexo"] ?></td>
+            <td><?= AtorSexo($ator["sexo"]) ?></td>
             <td class="text-center">
                 <a href="editar.php?id=<?= $ator["id"] ?>">editar</a>
                 <a href="excluir.php?id=<?= $ator["id"] ?>">apagar</a>

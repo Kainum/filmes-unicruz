@@ -1,5 +1,5 @@
 <?php
-    require_once '../protect.php';
+    require_once '../protect_admin.php';
 
     use controllers\Tags_Controller;
 

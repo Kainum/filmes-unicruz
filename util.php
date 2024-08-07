@@ -12,4 +12,17 @@ function FormatarData($data) {
     return date_format($nova_data, "d/m/Y");
 }
 
+function AtorSexo($s) {
+    switch ($s) {
+        case 'm':
+            return 'Masculino';
+        case 'f':
+            return 'Feminino';
+        case 'o':
+            return 'Outro';
+        default:
+            return '';
+    }
+}
+
 ?>
