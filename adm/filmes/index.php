@@ -1,15 +1,15 @@
 <?php
     require_once '../protect.php';
 
-    use controllers\Atores_Controller;
+    use controllers\Filmes_Controller;
     
-    require_once '../../controllers/atores_controller.php';
+    require_once '../../controllers/filmes_controller.php';
 
-    $title = "Atores";
+    $title = "Filmes";
     $childView = "./views/dashboard.php";
 
-    $controller = new Atores_Controller();
-
+    $controller = new Filmes_Controller();
+    
     include_once '../paginator_config.php';
     $list = $controller->GetPage($page, $limit);
 

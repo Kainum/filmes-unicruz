@@ -24,3 +24,4 @@
         </tr>
     <?php } ?>
 </table>
+<?php include_once '../_components/paginator.php' ?>

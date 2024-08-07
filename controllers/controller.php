@@ -6,7 +6,7 @@ use PDOException;
 
 require_once '../../connection.php';
 
-class Controller {
+abstract class Controller {
 
     protected $table;
     protected $columns;
@@ -32,6 +32,22 @@ class Controller {
         }
 
         return $obj;
+    }
+
+    function GetPage($page, $limit) {
+        $list = [];
+        try {
+            $sql = "SELECT * FROM $this->table LIMIT $limit OFFSET " . $limit * ($page-1);
+    
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            
+            $list = $query->fetchAll();
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
+        return $list;
     }
 
     function GetAll() {
@@ -98,11 +114,9 @@ class Controller {
             
             foreach ($this->columns as $column) {
                 $query->bindParam(":$column", $data[$column]);
-                echo $data[$column];
             }
             $query->bindParam(':id', $data['id']);
 
-            echo $data['id'];
             $query->execute();
         } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -120,5 +134,21 @@ class Controller {
         } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
+    }
+
+    function Count() {
+        $count = 0;
+        try {
+            $sql = "SELECT COUNT(*) AS qtd FROM $this->table";
+    
+            $query = $this->conn->prepare($sql);
+    
+            $query->execute();
+            $count = $query->fetch()["qtd"];
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
+        return $count;
     }
 }

@@ -9,7 +9,9 @@
     $childView = "./views/dashboard.php";
 
     $controller = new Tags_Controller();
-    $list = $controller->GetAll();
+    
+    include_once '../paginator_config.php';
+    $list = $controller->GetPage($page, $limit);
 
     include("../layout.php");
 ?>
