@@ -25,7 +25,7 @@
         // redireciona para o index
         require("../config.php");
         header("Location: $BASE_URL/tags");
-        // die();
+        die();
     }
     
 ?>
