@@ -1,9 +1,9 @@
 <?php
-    require_once '../protect_admin.php';
+    require_once "../protect_admin.php";
 
     use controllers\Filmes_Controller;
 
-    require_once '../../controllers/filmes_controller.php';
+    require_once "../../controllers/filmes_controller.php";
 
     $method = $_SERVER['REQUEST_METHOD'];
 

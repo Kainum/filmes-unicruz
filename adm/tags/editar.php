@@ -1,9 +1,9 @@
 <?php
-    require_once '../protect_admin.php';
+    require_once "../protect_admin.php";
 
     use controllers\Tags_Controller;
 
-    require_once '../../controllers/tags_controller.php';
+    require_once "../../controllers/tags_controller.php";
 
     $method = $_SERVER['REQUEST_METHOD'];
 

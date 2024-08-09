@@ -1,8 +1,8 @@
 <?php
 namespace controllers;
 
-require_once '../../connection.php';
-require_once 'controller.php';
+require_once "../../connection.php";
+require_once "controller.php";
 
 class Filmes_Controller extends Controller {
 
@@ -16,6 +16,8 @@ class Filmes_Controller extends Controller {
         'sinopse',
         'imagem',
     ];
+
+    protected $column_to_search = 'titulo';
     
 }
 

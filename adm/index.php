@@ -1,5 +1,5 @@
 <?php
-    require_once 'protect_admin.php';
+    require_once "protect_admin.php";
 
     $title = "Dashboard";
     $childView = "./dashboard.php";

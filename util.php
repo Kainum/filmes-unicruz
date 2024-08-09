@@ -25,4 +25,15 @@ function AtorSexo($s) {
     }
 }
 
+function FilmeClassInd($ci) {
+    switch ($ci) {
+        case 0:
+            return 'Livre';
+        case 10 || 12 || 14 || 16 || 18:
+            return "+$ci";
+        default:
+            return '';
+    }
+}
+
 ?>

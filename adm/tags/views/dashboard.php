@@ -1,6 +1,12 @@
 <?php include_once "../../util.php"; ?>
 <h2><?= $title ?></h2>
 <a href="novo.php" class="btn btn-primary my-3">Cadastrar Tag</a>
+
+<div class="d-flex mb-3 justify-content-between">
+    <?php include_once "../_components/search_bar.php" ?>
+    <?php include_once "../_components/counter.php" ?>
+</div>
+
 <table class="table table-bordered">
     <tr>
         <th class="text-end">Id</th>
@@ -18,4 +24,4 @@
         </tr>
     <?php } ?>
 </table>
-<?php include_once '../_components/paginator.php' ?>
+<?php include_once "../_components/paginator.php" ?>

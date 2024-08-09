@@ -4,12 +4,14 @@ namespace controllers;
 use Connection;
 use PDOException;
 
-require_once '../../connection.php';
+require_once "../../connection.php";
 
 abstract class Controller {
 
     protected $table;
     protected $columns;
+
+    protected $column_to_search;
 
     protected $conn;
 
@@ -34,12 +36,21 @@ abstract class Controller {
         return $obj;
     }
 
-    function GetPage($page, $limit) {
+    function GetFromPage($page, $limit, $search_term = '') {
         $list = [];
         try {
-            $sql = "SELECT * FROM $this->table LIMIT $limit OFFSET " . $limit * ($page-1);
-    
+            $where = '';
+            if (strlen($search_term) !== 0) {
+                $search_term = "%$search_term%";
+                $where = "WHERE $this->column_to_search LIKE :search_term";
+            }
+
+            $sql = "SELECT * FROM $this->table $where LIMIT $limit OFFSET " . $limit * ($page-1);
+
             $query = $this->conn->prepare($sql);
+
+            if (strlen($search_term) !== 0) $query->bindParam(':search_term', $search_term);
+            
             $query->execute();
             
             $list = $query->fetchAll();
@@ -136,12 +147,20 @@ abstract class Controller {
         }
     }
 
-    function Count() {
+    function Count($search_term = '') {
+        $where = '';
+        if (strlen($search_term) !== 0) {
+            $search_term = "%$search_term%";
+            $where = "WHERE $this->column_to_search LIKE :search_term";
+        }
+        
         $count = 0;
         try {
-            $sql = "SELECT COUNT(*) AS qtd FROM $this->table";
+            $sql = "SELECT COUNT(*) AS qtd FROM $this->table $where";
     
             $query = $this->conn->prepare($sql);
+
+            if (strlen($search_term) !== 0) $query->bindParam(':search_term', $search_term);
     
             $query->execute();
             $count = $query->fetch()["qtd"];

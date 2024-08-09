@@ -1,8 +1,8 @@
 <?php
 namespace controllers;
 
-require_once '../../connection.php';
-require_once 'controller.php';
+require_once "../../connection.php";
+require_once "controller.php";
 
 class Tags_Controller extends Controller {
 
@@ -11,6 +11,8 @@ class Tags_Controller extends Controller {
     protected $columns = [
         'descricao',
     ];
+
+    protected $column_to_search = 'descricao';
     
 }
 

@@ -1,9 +1,9 @@
 <?php
-    require_once '../protect_admin.php';
+    require_once "../protect_admin.php";
 
     use controllers\Atores_Controller;
     
-    require_once '../../controllers/atores_controller.php';
+    require_once "../../controllers/atores_controller.php";
 
     $title = "Deletar Ator";
 

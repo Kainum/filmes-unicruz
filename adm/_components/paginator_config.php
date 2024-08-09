@@ -7,8 +7,8 @@ $DEFAULT_LIMIT = 10;
 $page = intval($_GET["page"] ?? 1);
 $limit = intval($_GET["limit"] ?? $DEFAULT_LIMIT);
 
-$count = $controller->Count();
-$last_page = ceil($count / $limit);
+$count = $controller->Count($search_term ?? '');
+$last_page = max(1, ceil($count / $limit));
 
 $page = max(1, $page);
 $page = min($last_page, $page);

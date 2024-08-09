@@ -1,8 +1,8 @@
 <?php
 
 if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome'])) {
-    require_once 'connection.php';
-    require_once 'config.php';
+    require_once "connection.php";
+    require_once "config.php";
 
     $conn = Connection::GetConnection();
 
@@ -104,9 +104,9 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome'])) {
                         <input class="form-control" type="password" name="senha" id="senha" placeholder="password" required minlength="8">
                         <label for="senha">Senha</label>
                     </div>
-                    <div class="d-flex align-items-center gap-3">
-                        <label>Foto de Perfil</label>
-                        <input type="file" name="foto" id="foto" accept="image/png, image/jpeg">
+                    <div class="input-group">
+                        <label class="input-group-text" for="foto">Foto de Perfil</label>
+                        <input type="file" class="form-control" name="foto" id="foto" accept="image/png, image/jpeg">
                     </div>
                 </div>
                 <button class="btn btn-primary mt-4 py-2 px-4 rounded-3" type="submit">Cadastrar</button>
