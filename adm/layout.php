@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__."/config.php";
+    require_once __DIR__."/../config.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br" class="h-100">
@@ -23,11 +23,13 @@
 <body class="position-relative min-vh-100 m-0">
     <header class="bg-secondary">
         <nav class="container d-flex gap-4 py-2">
-            <a class="text-white" href=<?= "$BASE_URL/" ?>>HOME</a>
-            <a class="text-white" href=<?= "$BASE_URL/atores/" ?>>Atores</a>
-            <a class="text-white" href=<?= "$BASE_URL/filmes/" ?>>Filmes</a>
-            <a class="text-white" href=<?= "$BASE_URL/tags/" ?>>Tags</a>
-            <a class="text-white" href=<?= "$BASE_URL/usuarios/" ?>>Usuários</a>
+            <a class="text-white" href=<?= "$BASE_URL_ADM/" ?>>HOME</a>
+            <a class="text-white" href=<?= "$BASE_URL_ADM/atores/" ?>>Atores</a>
+            <a class="text-white" href=<?= "$BASE_URL_ADM/filmes/" ?>>Filmes</a>
+            <a class="text-white" href=<?= "$BASE_URL_ADM/tags/" ?>>Tags</a>
+            <a class="text-white" href=<?= "$BASE_URL_ADM/usuarios/" ?>>Usuários</a>
+
+            <a class="text-white ms-auto" href=<?= "$BASE_URL/logout.php" ?>>Fazer Logout</a>
         </nav>
     </header>
     <main>

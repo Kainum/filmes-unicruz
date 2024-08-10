@@ -25,7 +25,7 @@
             <td><?= $filme["duracao"] ?> min</td>
             <td class="text-center"><?= FilmeClassInd($filme["class_ind"]) ?></td>
             <td class="text-center">
-                <a href="<?= "$BASE_URL/elenco" ?>?filme_id=<?= $filme["id"] ?>">editar elenco</a>
+                <a href="<?= "$BASE_URL_ADM/elenco" ?>?filme_id=<?= $filme["id"] ?>">editar elenco</a>
             </td>
             <td class="text-center">
                 <a href="editar.php?id=<?= $filme["id"] ?>">editar</a>

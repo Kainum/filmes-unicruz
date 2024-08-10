@@ -11,8 +11,8 @@
     $controller->Delete($_GET['id']);
 
     // redireciona para o index
-    require_once "../config.php";
+    require_once "../../config.php";
     require_once "../../util.php";
-    redirect("$BASE_URL/filmes");
+    redirect("$BASE_URL_ADM/filmes");
 
 ?>

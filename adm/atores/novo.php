@@ -23,9 +23,9 @@
         $controller->Create($_POST);
 
         // redireciona para o index
-        require_once "../config.php";
+        require_once "../../config.php";
         require_once "../../util.php";
-        redirect("$BASE_URL/atores");
+        redirect("$BASE_URL_ADM/atores");
     }
     
 ?>

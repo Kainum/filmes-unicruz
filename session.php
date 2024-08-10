@@ -10,11 +10,12 @@ function FazerLogin($email, $senha) {
 
     if ($usuario) {
         if(!isset($_SESSION)) {
-            session_start();;
+            session_start();
         }
 
         $_SESSION['id'] = $usuario['id'];
         $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['admin'] = $usuario['admin'];
 
         require __DIR__."/config.php";
         require __DIR__."/util.php";

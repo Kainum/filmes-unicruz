@@ -1,14 +1,14 @@
 <?php
 
-require_once __DIR__."/../config.php";
+// require_once __DIR__."/../config.php";
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
-if (!isset($_SESSION['id'])) {
-    require_once __DIR__."/../util.php";
-    redirect("$BASE_URL/login.php");
+if (!isset($_SESSION['id']) || !isset($_SESSION['admin']) || !$_SESSION['admin']) {
+    http_response_code(403);
+    die('Forbidden');
 }
 
 ?>

@@ -12,5 +12,5 @@
     </div>
     
     <button class="btn btn-success" type="submit"><?= isset($obj) ? 'Salvar' : 'Criar' ?></button>
-    <a href=<?= "$BASE_URL/tags" ?> class="btn btn-secondary">Voltar</a>
+    <a href=<?= "$BASE_URL_ADM/tags" ?> class="btn btn-secondary">Voltar</a>
 </form>
