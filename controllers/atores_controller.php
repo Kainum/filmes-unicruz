@@ -1,7 +1,6 @@
 <?php
 namespace controllers;
 
-require_once "../../connection.php";
 require_once "controller.php";
 
 class Atores_Controller extends Controller {

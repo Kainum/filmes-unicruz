@@ -11,8 +11,8 @@
     $controller->Delete($_GET['id']);
 
     // redireciona para o index
-    require("../config.php");
-    header("Location: $BASE_URL/tags");
-    die();
+    require_once "../config.php";
+    require_once "../../util.php";
+    redirect("$BASE_URL/tags");
 
 ?>

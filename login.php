@@ -1,10 +1,7 @@
 <?php
 
 if(isset($_POST['email']) || isset($_POST['senha'])) {
-    require_once "connection.php";
     require_once "config.php";
-
-    $conn = Connection::GetConnection();
 
     if(strlen($_POST['email']) == 0) {
         echo "Preencha seu e-mail";
@@ -15,35 +12,11 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
         $email = $_POST['email'];
         $senha = md5($_POST['senha']);
 
-        $sql = "SELECT * FROM usuarios WHERE email = :email AND senha = :senha";
-        $query = $conn->prepare($sql);
-        $query->bindParam(':email', $email);
-        $query->bindParam(':senha', $senha);
-        
-        $query->execute();
-        $quantidade = $query->rowCount();
-
-        if($quantidade == 1) {
-            
-            $usuario = $query->fetch();
-
-            if(!isset($_SESSION)) {
-                session_start();
-            }
-
-            $_SESSION['id'] = $usuario['id'];
-            $_SESSION['nome'] = $usuario['nome'];
-
-            header("Location: $BASE_URL");
-            die();
-
-        } else {
-            echo "Falha ao logar! E-mail ou senha incorretos";
-        }
-
+        require_once "session.php";
+        FazerLogin($email, $senha);
     }
-
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

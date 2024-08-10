@@ -1,14 +1,14 @@
 <?php
 
-require_once "../config.php";
+require_once __DIR__."/../config.php";
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
 if (!isset($_SESSION['id'])) {
-    header("Location: $BASE_URL/login.php");
-    die();
+    require_once __DIR__."/../util.php";
+    redirect("$BASE_URL/login.php");
 }
 
 ?>

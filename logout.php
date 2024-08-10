@@ -7,4 +7,5 @@ if (!isset($_SESSION)) {
 
 session_destroy();
 
-header("Location: $BASE_URL");
+require_once "util.php";
+redirect($BASE_URL);

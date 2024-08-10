@@ -1,11 +1,10 @@
 <?php
 
-if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome'])) {
-    require_once "connection.php";
-    require_once "config.php";
+use controllers\Usuarios_Controller;
 
-    $conn = Connection::GetConnection();
+$method = $_SERVER['REQUEST_METHOD'];
 
+if ($method == 'POST') {
     if(strlen($_POST['email']) == 0) {
         echo "Preencha seu e-mail";
     } else if(strlen($_POST['senha']) == 0) {
@@ -13,60 +12,44 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome'])) {
     } else if(strlen($_POST['nome']) == 0) {
         echo "Preencha seu nome completo";
     } else {
-        
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $senha = md5($_POST['senha']);
-
-        $sql = "SELECT * FROM usuarios WHERE email = :email";
-        $query = $conn->prepare($sql);
-        $query->bindParam(':email', $email);
-        
-        $query->execute();
-        $quantidade = $query->rowCount();
-
-        if($quantidade > 0) {
-            echo "E-mail já cadastrado";
-        } else {
-
-            try {
-                // cadastra o usuário
-                $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
-    
-                $query = $conn->prepare($sql);
-                $query->bindParam(":nome", $nome);
-                $query->bindParam(":email", $email);
-                $query->bindParam(":senha", $senha);
-    
-                $query->execute();
-
-                // busca o usuário para fazer login
-                $sql = "SELECT * FROM usuarios WHERE email = :email AND senha = :senha";
-                $query = $conn->prepare($sql);
-                $query->bindParam(':email', $email);
-                $query->bindParam(':senha', $senha);
-
-                $query->execute();
-                $usuario = $query->fetch();
-
-                if(!isset($_SESSION)) {
-                    session_start();
-                }
-    
-                $_SESSION['id'] = $usuario['id'];
-                $_SESSION['nome'] = $usuario['nome'];
-
-            } catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-
-            header("Location: $BASE_URL");
-            die();
-        }
-
+        Cadastrar();
     }
-
 }
+
+function Cadastrar () {
+    require_once "config.php";
+    require_once "./controllers/usuarios_controller.php";
+
+    $email = $_POST['email'];
+    $senha = md5($_POST['senha']);
+
+    $controller = new Usuarios_Controller();
+    $quantidade = $controller->CountByEmail($email);
+
+    if($quantidade > 0) {
+        echo "E-mail já cadastrado";
+    } else {
+        try {
+            $data = [
+                'email' => $email,
+                'senha' => $senha,
+                'foto'  => '',
+                'admin' => false,
+            ];
+
+            // cadastra o usuário
+            $controller->Create($data);
+
+            // faz o login automaticamente
+            require_once "session.php";
+            FazerLogin($email, $senha);
+
+        } catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
