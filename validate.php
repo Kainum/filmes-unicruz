@@ -56,7 +56,7 @@ function unique($dado, $param, $msg, $field) {
     $count = 1;
     
     try {
-        require_once __DIR__."/connection.php";
+        require_once __DIR__."/_database/connection.php";
         $conn = Connection::GetConnection();
 
         $sql = "SELECT COUNT($field) as qtd FROM $param WHERE $field = :$field";

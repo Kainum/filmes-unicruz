@@ -4,7 +4,7 @@ namespace controllers;
 use Connection;
 use PDOException;
 
-require_once __DIR__."/../connection.php";
+require_once __DIR__."/../_database/connection.php";
 
 abstract class Controller {
 
