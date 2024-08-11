@@ -5,49 +5,41 @@ use controllers\Usuarios_Controller;
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == 'POST') {
-    if(strlen($_POST['email']) == 0) {
-        echo "Preencha seu e-mail";
-    } else if(strlen($_POST['senha']) == 0) {
-        echo "Preencha sua senha";
-    } else if(strlen($_POST['nome']) == 0) {
-        echo "Preencha seu nome completo";
-    } else {
-        Cadastrar();
+
+    require_once "validate.php";
+    $validate = validate([
+        'nome'  => [$_POST['nome'], [
+            ['required', 'O campo nome é obrigatório.'],
+        ]],
+        'email' => [$_POST['email'], [
+            ['email', ],
+            ['unique:usuarios', 'O e-mail informado já está cadastrado.'],
+        ]],
+        'senha' => [$_POST['senha'], [
+            ['required', 'Informe uma senha.'],
+            ['minlen:8', 'A senha deve possuir ao menos 8 caracteres.'],
+        ]],
+    ]);
+
+    if ($validate) {
+        Cadastrar($validate);
     }
 }
 
-function Cadastrar () {
-    require_once "config.php";
+function Cadastrar ($data) {
+    $data['senha'] = md5($data['senha']);
+    $data['foto'] = '';
+    $data['admin'] = false;
+
     require_once "./controllers/usuarios_controller.php";
-
-    $email = $_POST['email'];
-    $senha = md5($_POST['senha']);
-
     $controller = new Usuarios_Controller();
-    $quantidade = $controller->CountByEmail($email);
 
-    if($quantidade > 0) {
-        echo "E-mail já cadastrado";
-    } else {
-        try {
-            $data = [
-                'email' => $email,
-                'senha' => $senha,
-                'foto'  => '',
-                'admin' => false,
-            ];
+    // cadastra o usuário
+    $controller->Create($data);
 
-            // cadastra o usuário
-            $controller->Create($data);
-
-            // faz o login automaticamente
-            require_once "session.php";
-            FazerLogin($email, $senha);
-
-        } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
+    // faz o login automaticamente
+    require_once "session.php";
+    FazerLogin($data['email'], $data['senha']);
 }
 
 ?>
@@ -69,18 +61,20 @@ function Cadastrar () {
         }
     </style>
 </head>
-<body class="min-vh-100 m-0">
+<body class="min-vh-100 m-0 position-relative">
     <main class="container shadow-lg vh-100">
         <div class="row" id="card">
             <h2 class="mb-4">Fazer Cadastro</h2>
             <form action="cadastro.php" method="POST" enctype="multipart/form-data" class="col-6">
                 <div class="d-flex flex-column gap-3">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="nome" id="nome" placeholder="José da Silva" required>
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="José da Silva"
+                            value="<?= $_POST['nome'] ?? '' ?>">
                         <label for="nome">Nome Completo</label>
                     </div>
                     <div class="form-floating">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required
+                            value="<?= $_POST['email'] ?? '' ?>">
                         <label for="email">E-mail</label>
                     </div>
                     <div class="form-floating">
@@ -98,5 +92,18 @@ function Cadastrar () {
             </form>
         </div>
     </main>
+    <div class="position-absolute bottom-0 end-0 p-3 d-flex flex-column-reverse gap-2">
+        <?php foreach($msgs ?? [] as $field => $msg) { ?>
+            <div class="toast bg-<?= $msg['tipo'] ?> show">
+                <div class="toast-header">
+                    <strong class="me-auto">Mensagem</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    <p class="text-white"><?= $msg['msg'] ?></p>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 </body>
 </html>

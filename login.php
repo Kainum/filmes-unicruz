@@ -1,16 +1,24 @@
 <?php
 
-if(isset($_POST['email']) || isset($_POST['senha'])) {
-    require_once "config.php";
+$method = $_SERVER['REQUEST_METHOD'];
 
-    if(strlen($_POST['email']) == 0) {
-        echo "Preencha seu e-mail";
-    } else if(strlen($_POST['senha']) == 0) {
-        echo "Preencha sua senha";
-    } else {
+if ($method == 'POST') {
 
-        $email = $_POST['email'];
-        $senha = md5($_POST['senha']);
+    require_once "validate.php";
+    $validate = validate([
+        'email' => [$_POST['email'], [
+            ['required', 'Preencha seu e-mail.'],
+            ['email', ],
+        ]],
+        'senha' => [$_POST['senha'], [
+            ['required', 'Preencha sua senha.'],
+        ]],
+    ]);
+
+
+    if ($validate) {
+        $email = $validate['email'];
+        $senha = md5($validate['senha']);
 
         require_once "session.php";
         FazerLogin($email, $senha);
@@ -36,13 +44,14 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
         }
     </style>
 </head>
-<body class="min-vh-100 m-0">
+<body class="min-vh-100 m-0 position-relative">
     <main class="d-flex vh-100 align-items-center justify-content-center">
         <div class="shadow-lg" id="card">
             <h2 class="text-center mb-4">Fazer Login</h2>
             <form action="login.php" method="POST" class="d-flex flex-column gap-3">
                 <div class="form-floating">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required
+                        value="<?= $_POST['email'] ?? '' ?>">
                     <label for="email">E-mail</label>
                 </div>
                 <div class="form-floating">
@@ -58,5 +67,18 @@ if(isset($_POST['email']) || isset($_POST['senha'])) {
             </form>
         </div>
     </main>
+    <div class="position-absolute bottom-0 end-0 p-3 d-flex flex-column-reverse gap-2">
+        <?php foreach($msgs ?? [] as $field => $msg) { ?>
+            <div class="toast bg-<?= $msg['tipo'] ?> show">
+                <div class="toast-header">
+                    <strong class="me-auto">Mensagem</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    <p class="text-white"><?= $msg['msg'] ?></p>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 </body>
 </html>

@@ -21,7 +21,10 @@ function FazerLogin($email, $senha) {
         require __DIR__."/util.php";
         redirect($BASE_URL);
     } else {
-        echo "Falha ao logar! E-mail ou senha incorretos";
+        if (!isset($GLOBALS['msgs'])){
+            $GLOBALS['msgs'] = [];
+        }
+        array_push($GLOBALS['msgs'], ['tipo' => 'danger', 'msg' => 'E-mail ou senha incorretos.']);
     }
 }
 
