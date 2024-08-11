@@ -7,25 +7,34 @@
 
     $method = $_SERVER['REQUEST_METHOD'];
 
-    if ($method == 'GET') {
-        $title = "Cadastrar Tag";
-        $childView = "./views/form.php";
-        $action = "novo";
-        include("../layout.php");
-    }
-    else if ($method == 'POST') {
-        Criar();
+    if ($method == 'POST') {
+
+        require_once "../../validate.php";
+        $validate = validate([
+            'descricao' => [$_POST['descricao'], [
+                ['required', 'Preencha a descrição.'],
+            ]],
+        ]);
+
+        if ($validate) {
+            Criar($validate);
+        }
     }
 
-    function Criar () {
+    function Criar ($data) {
         // adicionar no banco
         $controller = new Tags_Controller();
-        $controller->Create($_POST);
+        $controller->Create($data);
 
         // redireciona para o index
         require_once "../../config.php";
         require_once "../../util.php";
         redirect("$BASE_URL_ADM/tags");
     }
+
+    $title = "Cadastrar Tag";
+    $childView = "./views/form.php";
+    $action = "novo";
+    include("../layout.php");
     
 ?>

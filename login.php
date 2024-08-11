@@ -67,7 +67,7 @@ if ($method == 'POST') {
             </form>
         </div>
     </main>
-    <div class="position-absolute bottom-0 end-0 p-3 d-flex flex-column-reverse gap-2">
+    <div class="position-fixed bottom-0 end-0 p-3 d-flex flex-column-reverse gap-2">
         <?php foreach($msgs ?? [] as $field => $msg) { ?>
             <div class="toast bg-<?= $msg['tipo'] ?> show">
                 <div class="toast-header">
