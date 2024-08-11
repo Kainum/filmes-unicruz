@@ -1,5 +1,10 @@
+<?php
+    require_once __DIR__."/../session.php";
+    $msgs = GetMsgs();
+    LimparMensagens();
+?>
 <div class="position-fixed z-1 bottom-0 end-0 p-3 d-flex flex-column-reverse gap-2">
-    <?php foreach($msgs ?? [] as $field => $msg) { ?>
+    <?php foreach($msgs ?? [] as $msg) { ?>
         <div class="toast bg-<?= $msg['tipo'] ?> show">
             <div class="toast-header">
                 <strong class="me-auto">Mensagem</strong>

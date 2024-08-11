@@ -1,3 +1,8 @@
+<?php
+
+$search_term = $_GET["search_term"] ?? '';
+
+?>
 <div class="w-50">
     <form method="get">
         <div class="input-group">

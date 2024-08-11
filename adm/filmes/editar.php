@@ -30,9 +30,14 @@
     }
 
     function Atualizar ($data) {
+        $data['id'] = $_POST['id'];
+
         // atualiza no banco
         $controller = new Filmes_Controller();
         $controller->Update($data);
+
+        require_once "../../session.php";
+        AdicionarMensagem('success', 'Filme <strong>atualizado</strong> com sucesso.');
 
         // redireciona para o index
         require_once "../../config.php";

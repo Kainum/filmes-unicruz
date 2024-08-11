@@ -1,4 +1,5 @@
 <?php
+    $INTERVALO = 2;
     $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 ?>
 <div class="d-flex flex-column gap-2">
@@ -7,7 +8,7 @@
         <a class="btn btn-outline-secondary" href=<?= "$url?page=1&search_term=$search_term&limit=$limit" ?>>&#x226A;</a>
         <a class="btn btn-outline-secondary" href=<?= "$url?page=". max(1, $page-1) ."&search_term=$search_term&limit=$limit" ?>>&#x3c;</a>
 
-        <?php for ($i = max($page-2, 1); $i <= min($page+2, $last_page); $i++) { ?>
+        <?php for ($i = max($page-$INTERVALO, 1); $i <= min($page+$INTERVALO, $last_page); $i++) { ?>
             <a  class="btn <?= $i == $page ? 'btn-primary' : 'btn-outline-secondary' ?>"
                 href=<?= "$url?page=$i&search_term=$search_term&limit=$limit" ?>>
                 <?= $i ?>

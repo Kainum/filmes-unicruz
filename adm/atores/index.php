@@ -10,8 +10,8 @@
 
     $controller = new Atores_Controller();
 
-    include_once "../_components/search_config.php";
-    include_once "../_components/paginator_config.php";
+    include_once "../../_components/search_bar_config.php";
+    include_once "../../_components/paginator_config.php";
 
     $list = $controller->GetFromPage($page, $limit, $search_term);
 

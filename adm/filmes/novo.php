@@ -35,6 +35,9 @@
         $controller = new Filmes_Controller();
         $controller->Create($data);
 
+        require_once "../../session.php";
+        AdicionarMensagem('success', 'Filme <strong>criado</strong> com sucesso.');
+
         // redireciona para o index
         require_once "../../config.php";
         require_once "../../util.php";

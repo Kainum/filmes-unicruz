@@ -15,4 +15,4 @@
     <button class="btn btn-success" type="submit"><?= isset($obj) ? 'Salvar' : 'Criar' ?></button>
     <a href=<?= "$BASE_URL_ADM/tags" ?> class="btn btn-secondary">Voltar</a>
 </form>
-<?php include __DIR__."/../../_components/message_logger.php" ?>
+<?php include __DIR__."/../../../_components/message_logger.php" ?>

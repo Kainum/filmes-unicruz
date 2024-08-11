@@ -24,8 +24,36 @@ function FazerLogin($email, $senha) {
         if (!isset($GLOBALS['msgs'])){
             $GLOBALS['msgs'] = [];
         }
-        array_push($GLOBALS['msgs'], ['tipo' => 'danger', 'msg' => 'E-mail ou senha incorretos.']);
+        AdicionarMensagem('danger', 'E-mail ou senha incorretos.');
     }
+}
+
+function GetMsgs() {
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+
+    return $_SESSION['msgs'] ?? [];
+}
+
+function AdicionarMensagem($tipo, $msg) {
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+
+    if (!isset($_SESSION['msgs'])){
+        $_SESSION['msgs'] = [];
+    }
+
+    array_push($_SESSION['msgs'], ['tipo' => $tipo, 'msg' => $msg]);
+}
+
+function LimparMensagens() {
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+
+    $_SESSION['msgs'] = [];
 }
 
 ?>
