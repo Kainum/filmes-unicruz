@@ -14,7 +14,7 @@
         <th>Lançamento</th>
         <th>Duração</th>
         <th class="text-center">C. Indicativa</th>
-        <th class="text-center">Elenco</th>
+        <th class="text-center">Info</th>
         <th class="text-center">Ações</th>
     </tr>
     <?php foreach ($list as $filme) { ?>
@@ -25,7 +25,7 @@
             <td><?= $filme["duracao"] ?> min</td>
             <td class="text-center"><?= FilmeClassInd($filme["class_ind"]) ?></td>
             <td class="text-center">
-                <a href="<?= "$BASE_URL_ADM/elenco" ?>?filme_id=<?= $filme["id"] ?>">editar elenco</a>
+                <a href="info.php?id=<?= $filme["id"] ?>">mais info</a>
             </td>
             <td class="text-center">
                 <a href="editar.php?id=<?= $filme["id"] ?>">editar</a>
