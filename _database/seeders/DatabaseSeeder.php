@@ -22,6 +22,9 @@ class DatabaseSeeder {
 
     static function DB_Reset() {
         $tables = [
+            'avaliacoes',
+            'filme_tags',
+            'papeis',
             'atores',
             'filmes',
             'tags',
@@ -33,12 +36,13 @@ class DatabaseSeeder {
 
         try {
             foreach ($tables as $table) {
-                $sql = "TRUNCATE TABLE $table;";
-    
+                $sql = "DROP TABLE $table;";
                 $query = $conn->prepare($sql);
-    
                 $query->execute();
             }
+
+            require_once __DIR__."/../migrations/migration1.php";
+            Migrate();
         } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
