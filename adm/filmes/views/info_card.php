@@ -19,32 +19,24 @@
                 <th>Personagem</th>
                 <th>Ator</th>
             </tr>
-            <tr>
-                <td>Teste</td>
-                <td>teste</td>
-            </tr>
-            <!-- <?php foreach($filme as $campo => $valor) { ?>
+            <?php foreach($elenco as $participacao) { ?>
                 <tr>
-                    <td><?= $campo ?></td>
-                    <td><?= $valor ?></td>
+                    <td><?= $participacao['personagem'] ?></td>
+                    <td><?= $participacao['ator'] ?></td>
                 </tr>
-            <?php } ?> -->
+            <?php } ?>
         </table>
         <hr>
         <h3 class="text-center mb-3">Tags</h3>
         <div class="d-flex gap-3 flex-wrap justify-content-center">
-            <?php
-                $tags = [
-                    'Horror', 'Romance', 'Mistério', 'Fantasia', 'Animação',
-                    'Horror', 'Romance', 'Mistério', 'Fantasia', 'Animação', 'Comédia',
-                ];
-            ?>
             <?php foreach($tags as $tag) { ?>
-                <span class="bg-secondary px-3 py-1 rounded-pill text-white"><?= $tag ?></span>
+                <span class="bg-secondary px-3 py-1 rounded-pill text-white"><?= $tag['descricao'] ?></span>
             <?php } ?>
         </div>
     </div>
-    <div class="w-100">
-        <a href=<?= "$BASE_URL_ADM/filmes" ?> class="btn btn-secondary float-end">Voltar</a>
-    </div>
+</div>
+<div class="w-100 mt-3">
+    <a href="elenco?id=<?= $_GET['id'] ?? 1 ?>" class="btn btn-primary">Editar Elenco</a>
+    <a href="tags?id=<?= $_GET['id'] ?? 1 ?>" class="btn btn-primary">Editar Tags</a>
+    <a href=<?= "$BASE_URL_ADM/filmes" ?> class="btn btn-secondary float-end">Voltar</a>
 </div>

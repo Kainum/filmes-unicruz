@@ -5,6 +5,9 @@ require_once __DIR__."/FilmeSeeder.php";
 require_once __DIR__."/TagSeeder.php";
 require_once __DIR__."/UsuarioSeeder.php";
 
+require_once __DIR__."/FilmeTagsSeeder.php";
+require_once __DIR__."/PapeisSeeder.php";
+
 class DatabaseSeeder {
 
     static function Seed ($reset = false) {
@@ -18,6 +21,9 @@ class DatabaseSeeder {
         FilmeSeeder::Seed();
         TagSeeder::Seed();
         UsuarioSeeder::Seed();
+
+        FilmeTagsSeeder::Seed();
+        PapeisSeeder::Seed();
     }
 
     static function DB_Reset() {

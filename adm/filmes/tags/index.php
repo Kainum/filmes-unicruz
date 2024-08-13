@@ -9,9 +9,9 @@
     $id_filme = intval($_GET['id'] ?? 0);
     
     $filme = $controller->Get($id_filme);
-    $list = $controller->GetPapeis($id_filme);
+    $list = $controller->GetTags($id_filme);
 
-    $title = "Elenco do Filme: ". $filme['titulo'];
+    $title = "Tags do Filme: ". $filme['titulo'];
     $childView = "./form.php";
 
     include("../../layout.php");
