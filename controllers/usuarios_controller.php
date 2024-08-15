@@ -4,6 +4,7 @@ namespace controllers;
 use PDOException;
 
 require_once "controller.php";
+require_once __DIR__."/../session.php";
 
 class Usuarios_Controller extends Controller {
 
@@ -30,7 +31,7 @@ class Usuarios_Controller extends Controller {
             $query->execute();
             $usuario = $query->fetch();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
         
         return $usuario;
@@ -47,7 +48,7 @@ class Usuarios_Controller extends Controller {
             $query->execute();
             $count = $query->fetch()["qtd"];
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
 
         return $count;

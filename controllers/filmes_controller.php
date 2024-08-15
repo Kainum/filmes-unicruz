@@ -4,6 +4,7 @@ namespace controllers;
 use PDOException;
 
 require_once "controller.php";
+require_once __DIR__."/../session.php";
 
 class Filmes_Controller extends Controller {
 
@@ -35,7 +36,7 @@ class Filmes_Controller extends Controller {
             $query->execute();
             $list = $query->fetchAll();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
 
         return $list;
@@ -55,7 +56,7 @@ class Filmes_Controller extends Controller {
             $query->execute();
             $list = $query->fetchAll();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
 
         return $list;

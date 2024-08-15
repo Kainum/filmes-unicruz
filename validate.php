@@ -66,7 +66,7 @@ function unique($dado, $param, $msg, $field) {
         $query->execute();
         $count = $query->fetch()['qtd'];
     } catch(PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        AdicionarMensagem('danger', "Error: " . $e->getMessage());
     }
 
     if ($count > 0) {

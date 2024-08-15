@@ -5,6 +5,7 @@ use Connection;
 use PDOException;
 
 require_once __DIR__."/../_database/connection.php";
+require_once __DIR__."/../session.php";
 
 abstract class Controller {
 
@@ -30,7 +31,7 @@ abstract class Controller {
             $query->execute();
             $obj = $query->fetch();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
 
         return $obj;
@@ -55,23 +56,23 @@ abstract class Controller {
             
             $list = $query->fetchAll();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
 
         return $list;
     }
 
-    function GetAll() {
+    function GetAll($orderBy = null) {
         $list = [];
         try {
-            $sql = "SELECT * FROM $this->table";
+            $sql = "SELECT * FROM $this->table ORDER BY " . ($orderBy ?? 'id');
     
             $query = $this->conn->prepare($sql);
             $query->execute();
             
             $list = $query->fetchAll();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
 
         return $list;
@@ -102,7 +103,7 @@ abstract class Controller {
 
             $query->execute();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
     }
 
@@ -130,7 +131,7 @@ abstract class Controller {
 
             $query->execute();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
     }
 
@@ -143,7 +144,7 @@ abstract class Controller {
     
             $query->execute();
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
     }
 
@@ -165,7 +166,7 @@ abstract class Controller {
             $query->execute();
             $count = $query->fetch()["qtd"];
         } catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
         }
 
         return $count;
