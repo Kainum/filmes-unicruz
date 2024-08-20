@@ -25,7 +25,7 @@ class Filmes_Controller extends Controller {
     function GetTags ($id_filme) {
         $list = [];
         try {
-            $sql = "SELECT t.id, t.descricao
+            $sql = "SELECT ft.id as id, t.id as id_tag, t.descricao
                     FROM filme_tags ft
                     INNER JOIN tags t ON ft.id_tag = t.id
                     WHERE ft.id_filme = :id_filme";
@@ -45,7 +45,7 @@ class Filmes_Controller extends Controller {
     function GetPapeis ($id_filme) {
         $list = [];
         try {
-            $sql = "SELECT a.id, a.nome as ator, p.personagem
+            $sql = "SELECT p.id as id, a.id as id_ator, a.nome as ator, p.personagem
                     FROM papeis p
                     INNER JOIN atores a ON p.id_ator = a.id
                     WHERE p.id_filme = :id_filme";

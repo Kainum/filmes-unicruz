@@ -13,16 +13,12 @@ function FormatarData($data) {
 }
 
 function AtorSexo($s) {
-    switch ($s) {
-        case 'm':
-            return 'Masculino';
-        case 'f':
-            return 'Feminino';
-        case 'o':
-            return 'Outro';
-        default:
-            return '';
-    }
+    $dictionary = [
+        'm' => 'Masculino',
+        'f' => 'Feminino',
+        'o' => 'Outro',
+    ];
+    return $dictionary[strtolower($s)] ?? '';
 }
 
 function FilmeClassInd($ci) {
