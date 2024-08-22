@@ -4,7 +4,7 @@ class Connection {
     private const servername = "localhost";
     private const username = "root";
     private const password = "";
-    private const dbname = "teste";
+    private const dbname = "filmes";
 
     // Singleton
     private static $conn;

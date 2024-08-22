@@ -17,9 +17,43 @@ class Filmes_Controller extends Controller {
         'class_ind',
         'sinopse',
         'imagem',
+        'slug',
     ];
 
     protected $column_to_search = 'titulo';
+
+    function GetBySlug($slug) {
+        $obj = [];
+        try {
+            $sql = "SELECT * FROM $this->table WHERE slug = :slug";
+
+            $query = $this->conn->prepare($sql);
+            $query->bindParam(':slug', $slug);
+
+            $query->execute();
+            $obj = $query->fetch();
+        } catch(PDOException $e) {
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
+        }
+
+        return $obj;
+    }
+
+    function GetDestaques() {
+        $list = [];
+        try {
+            $sql = "SELECT * FROM $this->table ORDER BY data_lancamento DESC LIMIT 10";
+    
+            $query = $this->conn->prepare($sql);
+            $query->execute();
+            
+            $list = $query->fetchAll();
+        } catch(PDOException $e) {
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
+        }
+
+        return $list;
+    }
 
 
     function GetTags ($id_filme) {

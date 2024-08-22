@@ -42,7 +42,7 @@ class DatabaseSeeder {
 
         try {
             foreach ($tables as $table) {
-                $sql = "DROP TABLE $table;";
+                $sql = "DROP TABLE IF EXISTS $table;";
                 $query = $conn->prepare($sql);
                 $query->execute();
             }

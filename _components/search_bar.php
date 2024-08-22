@@ -11,6 +11,6 @@ $search_term = $_GET["search_term"] ?? '';
                 <i class="material-symbols-outlined">search</i>
             </button>
         </div>
-        <input type="hidden" name="limit" value=<?= "$limit" ?>>
+        <input type="hidden" name="limit" value="<?= $limit ?? 0 ?>">
     </form>
 </div>
