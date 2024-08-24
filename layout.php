@@ -34,16 +34,18 @@
                 include __DIR__."/_components/search_bar.php";
             ?>
             <?php if (!EstaLogado()) { ?>
-                <span class="align-content-center ms-auto">
-                    Faça <a class="text-white" href=<?= "$BASE_URL/login.php" ?>>Login</a> ou 
-                    <a class="text-white" href=<?= "$BASE_URL/cadastro.php" ?>>Cadastre-se</a>
-                </span>
+                <div class="ms-auto align-content-center">
+                    <span>
+                        Faça <a class="text-white" href=<?= "$BASE_URL/login.php" ?>>Login</a> ou 
+                        <a class="text-white" href=<?= "$BASE_URL/cadastro.php" ?>>Cadastre-se</a>
+                    </span>
+                </div>
             <?php } else { ?>
-                <span class="align-content-center ms-auto">
-                    Fazer <a class="text-white" href=<?= "$BASE_URL/logout.php" ?>>Logout</a>
-                </span>
+                <div class="ms-auto d-flex gap-3 align-items-center">
+                    <a class="text-white" href=<?= "$BASE_URL/meu_perfil" ?>>Meu Perfil</a>
+                    <span>Fazer <a class="text-white" href=<?= "$BASE_URL/logout.php" ?>>Logout</a></span>
+                </div>
             <?php } ?>
-
         </nav>
     </header>
     <main>

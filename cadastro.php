@@ -68,7 +68,7 @@ function Cadastrar ($data) {
             <form action="cadastro.php" method="POST" enctype="multipart/form-data" class="col-6">
                 <div class="d-flex flex-column gap-3">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="nome" id="nome" placeholder="José da Silva"
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="José da Silva" required
                             value="<?= $_POST['nome'] ?? '' ?>">
                         <label for="nome">Nome Completo</label>
                     </div>

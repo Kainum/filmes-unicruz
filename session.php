@@ -44,6 +44,18 @@ function EstaLogado() {
     return isset($_SESSION['id']);
 }
 
+function UsuarioAtivo() {
+    require_once __DIR__."/controllers/usuarios_controller.php";
+    $controller = new Usuarios_Controller();
+
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+
+    $usuario = $controller->Get($_SESSION['id']);
+    return $usuario;
+}
+
 function GetMsgs() {
     if(!isset($_SESSION)) {
         session_start();
