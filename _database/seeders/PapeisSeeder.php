@@ -27,6 +27,7 @@ class PapeisSeeder {
         for ($i = 1; $i <= $qtd_filmes; $i++) {
 
             $random = $faker->numberBetween(1, 5);
+            $random = $faker->numberBetween(1, 5);
             $atores = [];
 
             for ($j = 0; $j < $random; $j++) {

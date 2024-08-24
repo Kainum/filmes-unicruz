@@ -28,6 +28,22 @@ function FazerLogin($email, $senha) {
     }
 }
 
+function FazerLogout() {
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    
+    session_destroy();
+}
+
+function EstaLogado() {
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    
+    return isset($_SESSION['id']);
+}
+
 function GetMsgs() {
     if(!isset($_SESSION)) {
         session_start();

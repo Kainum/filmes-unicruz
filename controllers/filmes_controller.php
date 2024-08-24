@@ -95,6 +95,26 @@ class Filmes_Controller extends Controller {
 
         return $list;
     }
+
+    function GetAvaliacoes ($id_filme) {
+        $list = [];
+        try {
+            $sql = "SELECT a.comentario, a.nota, a.data_avaliacao, u.nome as usuario
+                    FROM avaliacoes a
+                    INNER JOIN usuarios u ON a.id_usuario = u.id
+                    WHERE a.id_filme = :id_filme";
+
+            $query = $this->conn->prepare($sql);
+            $query->bindParam(':id_filme', $id_filme);
+
+            $query->execute();
+            $list = $query->fetchAll();
+        } catch(PDOException $e) {
+            AdicionarMensagem('danger', "Error: " . $e->getMessage());
+        }
+
+        return $list;
+    }
     
 }
 

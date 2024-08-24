@@ -1,5 +1,7 @@
 <?php
     require_once __DIR__."/config.php";
+    require_once __DIR__."/session.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br" class="h-100">
@@ -27,9 +29,21 @@
     <header>
         <nav class="container d-flex gap-4 py-2">
             <a class="text-white fs-4 align-content-center" href=<?= "$BASE_URL/" ?>>HOME</a>
-            <?php include __DIR__."/_components/search_bar.php" ?>
+            <?php
+                $action = $BASE_URL;
+                include __DIR__."/_components/search_bar.php";
+            ?>
+            <?php if (!EstaLogado()) { ?>
+                <span class="align-content-center ms-auto">
+                    Faça <a class="text-white" href=<?= "$BASE_URL/login.php" ?>>Login</a> ou 
+                    <a class="text-white" href=<?= "$BASE_URL/cadastro.php" ?>>Cadastre-se</a>
+                </span>
+            <?php } else { ?>
+                <span class="align-content-center ms-auto">
+                    Fazer <a class="text-white" href=<?= "$BASE_URL/logout.php" ?>>Logout</a>
+                </span>
+            <?php } ?>
 
-            <a class="text-white align-content-center ms-auto" href=<?= "$BASE_URL/logout.php" ?>>Fazer Logout</a>
         </nav>
     </header>
     <main>
