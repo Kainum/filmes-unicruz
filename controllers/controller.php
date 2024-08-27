@@ -37,7 +37,7 @@ abstract class Controller {
         return $obj;
     }
 
-    function GetFromPage($page, $limit, $search_term = '') {
+    function GetFromPage($page, $limit, $search_term = '', $orderBy = null) {
         $list = [];
         try {
             $where = '';
@@ -46,7 +46,7 @@ abstract class Controller {
                 $where = "WHERE $this->column_to_search LIKE :search_term";
             }
 
-            $sql = "SELECT * FROM $this->table $where LIMIT $limit OFFSET " . $limit * ($page-1);
+            $sql = "SELECT * FROM $this->table $where ORDER BY " . ($orderBy ?? 'id') . " LIMIT $limit OFFSET " . $limit * ($page-1);
 
             $query = $this->conn->prepare($sql);
 

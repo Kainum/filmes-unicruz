@@ -4,8 +4,7 @@ require_once __DIR__."/../config.php";
 ?>
 <div class="poster">
     <img src="<?= $filme['imagem'] ?>" alt="">
-    <div class="rounded-bottom px-3 pt-2 pb-1">
-        <span><i class="material-symbols-outlined">star</i> <?= $filme['nota'] ?? 5 ?></span>
+    <div class="rounded-bottom px-3 py-2">
         <a class="text-white" href=<?= "$BASE_URL/filme?filme=".$filme['slug'] ?>>
             <p class="text-truncate">
                 <?= $filme['titulo'] ?>

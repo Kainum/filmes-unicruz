@@ -18,7 +18,7 @@
         <h2><?= $filme['titulo'] ?></h2>
         <p>
             <span class="fw-light"><?= FormatarData($filme['data_lancamento']) ?></span>
-            <span class="float-end"><i class="material-symbols-outlined">star</i> <?= $filme['nota'] ?? 5 ?></span>
+            <span class="float-end d-flex gap-2 align-content-center"><i class="material-symbols-outlined">star</i> <?= $filme['nota'] ?? 'sem avaliações' ?></span>
         </p>
 
         <p class="mt-3"><span class="fw-bold">Sinopse:</span><br>

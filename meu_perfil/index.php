@@ -51,6 +51,8 @@
         // cadastra o usuário
         $GLOBALS['controller']->Update($data);
 
+        AdicionarMensagem('success', 'Perfil alterado com sucesso.');
+
         // faz o login automaticamente
         FazerLogin($data['email'], $data['senha']);
     }

@@ -8,7 +8,13 @@
     require_once "./controllers/filmes_controller.php";
     $controller = new Filmes_Controller();
 
-    $destaques = $controller->GetDestaques();
+    if (isset($_GET["search_term"])) {
+        $h1 = 'Resultados da Pesquisa:';
+        $lista_filmes = $controller->GetFromPage(1, 500, $_GET["search_term"], 'titulo');
+    } else {
+        $h1 = 'Destaques:';
+        $lista_filmes = $controller->GetDestaques();
+    }
 
     include("./layout.php");
 ?>

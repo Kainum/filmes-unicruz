@@ -25,7 +25,11 @@ class Filmes_Controller extends Controller {
     function GetBySlug($slug) {
         $obj = [];
         try {
-            $sql = "SELECT * FROM $this->table WHERE slug = :slug";
+            $sql = "SELECT f.*, FORMAT(SUM(a.nota) / COUNT(a.nota), 2) as nota
+                    FROM $this->table f
+                    LEFT JOIN avaliacoes a ON f.id = a.id_filme
+                    WHERE slug = :slug
+                    GROUP BY f.id";
 
             $query = $this->conn->prepare($sql);
             $query->bindParam(':slug', $slug);

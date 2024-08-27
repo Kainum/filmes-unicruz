@@ -92,18 +92,6 @@ function Cadastrar ($data) {
             </form>
         </div>
     </main>
-    <div class="position-fixed bottom-0 end-0 p-3 d-flex flex-column-reverse gap-2">
-        <?php foreach($msgs ?? [] as $field => $msg) { ?>
-            <div class="toast bg-<?= $msg['tipo'] ?> show">
-                <div class="toast-header">
-                    <strong class="me-auto">Mensagem</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-                </div>
-                <div class="toast-body">
-                    <p class="text-white"><?= $msg['msg'] ?></p>
-                </div>
-            </div>
-        <?php } ?>
-    </div>
+    <?php include __DIR__."/_components/message_logger.php" ?>
 </body>
 </html>
