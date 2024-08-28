@@ -4,9 +4,9 @@ use controllers\Papeis_Controller;
 use controllers\Filmes_Controller;
 use controllers\Atores_Controller;
 
-require_once __DIR__."/../../controllers/papeis_controller.php";
-require_once __DIR__."/../../controllers/filmes_controller.php";
-require_once __DIR__."/../../controllers/atores_controller.php";
+require_once __DIR__."/../../_controllers/papeis_controller.php";
+require_once __DIR__."/../../_controllers/filmes_controller.php";
+require_once __DIR__."/../../_controllers/atores_controller.php";
 
 require_once __DIR__."/../factories/PapeisFactory.php";
 

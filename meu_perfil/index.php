@@ -1,19 +1,19 @@
 <?php
     use controllers\Usuarios_Controller;
 
-    require_once "../session.php";
+    require_once "../_session.php";
     $method = $_SERVER['REQUEST_METHOD'];
 
     $usuario = UsuarioAtivo();
 
     if ($method == 'POST') {
-        require_once "../controllers/usuarios_controller.php";
+        require_once "../_controllers/usuarios_controller.php";
         $controller = new Usuarios_Controller();
 
         $login = $controller->GetLogin($usuario['email'], md5($_POST['senha_atual']));
 
         if ($login) {
-            require_once "../validate.php";
+            require_once "../_validate.php";
 
             $validate = [
                 'nome'  => [$_POST['nome'], [
@@ -21,7 +21,7 @@
                 ]],
             ];
 
-            if (strlen($_POST['nova_senha']) > 0) {
+            if (!empty($_POST['nova_senha'])) {
                 $validate['senha'] = [$_POST['nova_senha'], [
                     ['required', 'Informe uma senha.'],
                     ['minlen:8', 'A senha deve possuir ao menos 8 caracteres.'],

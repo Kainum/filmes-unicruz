@@ -14,12 +14,13 @@ CREATE TABLE filmes (
     duracao			INT,
     class_ind		INT,
     sinopse			TEXT,
-    imagem			VARCHAR(255)
+    imagem			VARCHAR(255),
+    slug			VARCHAR(255)	NOT NULL UNIQUE
 );
 
 CREATE TABLE tags (
     id		    INT             AUTO_INCREMENT PRIMARY KEY,
-    descricao   VARCHAR(50)     UNIQUE NOT NULL
+    descricao   VARCHAR(50)     NOT NULL UNIQUE
 );
 
 CREATE TABLE usuarios (

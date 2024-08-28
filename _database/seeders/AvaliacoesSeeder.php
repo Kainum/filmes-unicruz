@@ -4,9 +4,9 @@ use controllers\Avaliacoes_Controller;
 use controllers\Filmes_Controller;
 use controllers\Usuarios_Controller;
 
-require_once __DIR__."/../../controllers/avaliacoes_controller.php";
-require_once __DIR__."/../../controllers/filmes_controller.php";
-require_once __DIR__."/../../controllers/usuarios_controller.php";
+require_once __DIR__."/../../_controllers/avaliacoes_controller.php";
+require_once __DIR__."/../../_controllers/filmes_controller.php";
+require_once __DIR__."/../../_controllers/usuarios_controller.php";
 
 require_once __DIR__."/../factories/AvaliacoesFactory.php";
 

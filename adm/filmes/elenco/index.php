@@ -5,9 +5,9 @@
     use controllers\Atores_Controller;
     use controllers\Papeis_Controller;
 
-    require_once "../../../controllers/filmes_controller.php";
-    require_once "../../../controllers/atores_controller.php";
-    require_once "../../../controllers/papeis_controller.php";
+    require_once "../../../_controllers/filmes_controller.php";
+    require_once "../../../_controllers/atores_controller.php";
+    require_once "../../../_controllers/papeis_controller.php";
 
     $controller = new Filmes_Controller();
     $controller_atores = new Atores_Controller();
@@ -35,8 +35,8 @@
             $controller_papeis->Create($data);
         }
 
-        require_once "../../../config.php";
-        require_once "../../../util.php";
+        require_once "../../../_config.php";
+        require_once "../../../_util.php";
         redirect("$BASE_URL_ADM/filmes/info.php?id=$id_filme");
     }
     

@@ -3,7 +3,7 @@
 use controllers\Usuarios_Controller;
 
 function FazerLogin($email, $senha) {
-    require_once __DIR__."/controllers/usuarios_controller.php";
+    require_once __DIR__."/_controllers/usuarios_controller.php";
     $controller = new Usuarios_Controller();
 
     $usuario = $controller->GetLogin($email, $senha);
@@ -17,8 +17,8 @@ function FazerLogin($email, $senha) {
         $_SESSION['nome'] = $usuario['nome'];
         $_SESSION['admin'] = $usuario['admin'];
 
-        require __DIR__."/config.php";
-        require __DIR__."/util.php";
+        require __DIR__."/_config.php";
+        require __DIR__."/_util.php";
         redirect($BASE_URL);
     } else {
         if (!isset($GLOBALS['msgs'])){
@@ -45,7 +45,7 @@ function EstaLogado() {
 }
 
 function UsuarioAtivo() {
-    require_once __DIR__."/controllers/usuarios_controller.php";
+    require_once __DIR__."/_controllers/usuarios_controller.php";
     $controller = new Usuarios_Controller();
 
     if(!isset($_SESSION)) {

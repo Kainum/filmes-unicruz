@@ -3,7 +3,7 @@
 
     use controllers\Tags_Controller;
     
-    require_once "../../controllers/tags_controller.php";
+    require_once "../../_controllers/tags_controller.php";
 
     $title = "Tags";
     $childView = "./views/dashboard.php";

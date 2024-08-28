@@ -1,8 +1,8 @@
 <?php
-require_once "config.php";
+require_once "_config.php";
 
-require_once "session.php";
+require_once "_session.php";
 FazerLogout();
 
-require_once "util.php";
+require_once "_util.php";
 redirect($BASE_URL);

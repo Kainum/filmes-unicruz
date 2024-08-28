@@ -3,7 +3,7 @@
 use controllers\Atores_Controller;
 
 require_once __DIR__."/../factories/AtorFactory.php";
-require_once __DIR__."/../../controllers/atores_controller.php";
+require_once __DIR__."/../../_controllers/atores_controller.php";
 
 class AtorSeeder {
 

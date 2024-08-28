@@ -3,7 +3,7 @@
 use controllers\Filmes_Controller;
 
 require_once __DIR__."/../factories/FilmeFactory.php";
-require_once __DIR__."/../../controllers/filmes_controller.php";
+require_once __DIR__."/../../_controllers/filmes_controller.php";
 
 class FilmeSeeder {
 

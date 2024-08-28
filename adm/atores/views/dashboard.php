@@ -1,4 +1,4 @@
-<?php include_once "../../util.php"; ?>
+<?php include_once "../../_util.php"; ?>
 <h2><?= $title ?></h2>
 <a href="novo.php" class="btn btn-primary my-3">Cadastrar Ator</a>
 

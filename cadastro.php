@@ -6,7 +6,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == 'POST') {
 
-    require_once "validate.php";
+    require_once "_validate.php";
     $validate = validate([
         'nome'  => [$_POST['nome'], [
             ['required', 'O campo nome é obrigatório.'],
@@ -31,14 +31,14 @@ function Cadastrar ($data) {
     $data['foto'] = '';
     $data['admin'] = false;
 
-    require_once "./controllers/usuarios_controller.php";
+    require_once "./_controllers/usuarios_controller.php";
     $controller = new Usuarios_Controller();
 
     // cadastra o usuário
     $controller->Create($data);
 
     // faz o login automaticamente
-    require_once "session.php";
+    require_once "_session.php";
     FazerLogin($data['email'], $data['senha']);
 }
 

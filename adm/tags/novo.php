@@ -3,13 +3,13 @@
 
     use controllers\Tags_Controller;
 
-    require_once "../../controllers/tags_controller.php";
+    require_once "../../_controllers/tags_controller.php";
 
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method == 'POST') {
 
-        require_once "../../validate.php";
+        require_once "../../_validate.php";
         $validate = validate([
             'descricao' => [$_POST['descricao'], [
                 ['required', 'Preencha a descrição.'],
@@ -26,12 +26,12 @@
         $controller = new Tags_Controller();
         $controller->Create($data);
 
-        require_once "../../session.php";
+        require_once "../../_session.php";
         AdicionarMensagem('success', 'Tag <strong>criado</strong> com sucesso.');
 
         // redireciona para o index
-        require_once "../../config.php";
-        require_once "../../util.php";
+        require_once "../../_config.php";
+        require_once "../../_util.php";
         redirect("$BASE_URL_ADM/tags");
     }
 

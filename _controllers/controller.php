@@ -5,7 +5,7 @@ use Connection;
 use PDOException;
 
 require_once __DIR__."/../_database/connection.php";
-require_once __DIR__."/../session.php";
+require_once __DIR__."/../_session.php";
 
 abstract class Controller {
 
@@ -41,7 +41,7 @@ abstract class Controller {
         $list = [];
         try {
             $where = '';
-            if (strlen($search_term) !== 0) {
+            if (!empty($search_term)) {
                 $search_term = "%$search_term%";
                 $where = "WHERE $this->column_to_search LIKE :search_term";
             }
@@ -50,7 +50,7 @@ abstract class Controller {
 
             $query = $this->conn->prepare($sql);
 
-            if (strlen($search_term) !== 0) $query->bindParam(':search_term', $search_term);
+            if (!empty($search_term)) $query->bindParam(':search_term', $search_term);
             
             $query->execute();
             
@@ -150,7 +150,7 @@ abstract class Controller {
 
     function Count($search_term = '') {
         $where = '';
-        if (strlen($search_term) !== 0) {
+        if (!empty($search_term)) {
             $search_term = "%$search_term%";
             $where = "WHERE $this->column_to_search LIKE :search_term";
         }
@@ -161,7 +161,7 @@ abstract class Controller {
     
             $query = $this->conn->prepare($sql);
 
-            if (strlen($search_term) !== 0) $query->bindParam(':search_term', $search_term);
+            if (!empty($search_term)) $query->bindParam(':search_term', $search_term);
     
             $query->execute();
             $count = $query->fetch()["qtd"];

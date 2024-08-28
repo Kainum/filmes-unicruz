@@ -3,12 +3,12 @@
 
     use controllers\Filmes_Controller;
 
-    require_once "../../controllers/filmes_controller.php";
+    require_once "../../_controllers/filmes_controller.php";
 
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method == 'POST') {
-        require_once "../../validate.php";
+        require_once "../../_validate.php";
         $validate = validate([
             'titulo' => [$_POST['titulo'], [
                 ['required', 'Preencha o título.'],
@@ -36,12 +36,12 @@
         $controller = new Filmes_Controller();
         $controller->Update($data);
 
-        require_once "../../session.php";
+        require_once "../../_session.php";
         AdicionarMensagem('success', 'Filme <strong>atualizado</strong> com sucesso.');
 
         // redireciona para o index
-        require_once "../../config.php";
-        require_once "../../util.php";
+        require_once "../../_config.php";
+        require_once "../../_util.php";
         redirect("$BASE_URL_ADM/filmes");
     }
 

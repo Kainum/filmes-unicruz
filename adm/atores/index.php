@@ -3,7 +3,7 @@
 
     use controllers\Atores_Controller;
     
-    require_once "../../controllers/atores_controller.php";
+    require_once "../../_controllers/atores_controller.php";
 
     $title = "Atores";
     $childView = "./views/dashboard.php";

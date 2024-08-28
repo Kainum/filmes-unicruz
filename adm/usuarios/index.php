@@ -3,7 +3,7 @@
 
     use controllers\Usuarios_Controller;
     
-    require_once "../../controllers/usuarios_controller.php";
+    require_once "../../_controllers/usuarios_controller.php";
 
     $title = "Usuários";
     $childView = "./views/dashboard.php";

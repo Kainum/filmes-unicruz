@@ -4,9 +4,9 @@ use controllers\Filme_Tags_Controller;
 use controllers\Filmes_Controller;
 use controllers\Tags_Controller;
 
-require_once __DIR__."/../../controllers/filme_tags_controller.php";
-require_once __DIR__."/../../controllers/filmes_controller.php";
-require_once __DIR__."/../../controllers/tags_controller.php";
+require_once __DIR__."/../../_controllers/filme_tags_controller.php";
+require_once __DIR__."/../../_controllers/filmes_controller.php";
+require_once __DIR__."/../../_controllers/tags_controller.php";
 
 class FilmeTagsSeeder {
 

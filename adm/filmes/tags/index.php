@@ -5,9 +5,9 @@
     use controllers\Filmes_Controller;
     use controllers\Tags_Controller;
 
-    require_once "../../../controllers/filmes_controller.php";
-    require_once "../../../controllers/tags_controller.php";
-    require_once "../../../controllers/filme_tags_controller.php";
+    require_once "../../../_controllers/filmes_controller.php";
+    require_once "../../../_controllers/tags_controller.php";
+    require_once "../../../_controllers/filme_tags_controller.php";
 
     $controller = new Filmes_Controller();
     $controller_tags = new Tags_Controller();
@@ -33,8 +33,8 @@
             $controller_ft->Create($data);
         }
 
-        require_once "../../../config.php";
-        require_once "../../../util.php";
+        require_once "../../../_config.php";
+        require_once "../../../_util.php";
         redirect("$BASE_URL_ADM/filmes/info.php?id=$id_filme");
 
         die();

@@ -3,7 +3,7 @@
 use controllers\Usuarios_Controller;
 
 require_once __DIR__."/../factories/UsuarioFactory.php";
-require_once __DIR__."/../../controllers/usuarios_controller.php";
+require_once __DIR__."/../../_controllers/usuarios_controller.php";
 
 class UsuarioSeeder {
 

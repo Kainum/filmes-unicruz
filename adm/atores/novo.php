@@ -3,13 +3,13 @@
 
     use controllers\Atores_Controller;
 
-    require_once "../../controllers/atores_controller.php";
+    require_once "../../_controllers/atores_controller.php";
 
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method == 'POST') {
 
-        require_once "../../validate.php";
+        require_once "../../_validate.php";
         $validate = validate([
             'nome' => [$_POST['nome'], [
                 ['required', 'Preencha o nome.'],
@@ -37,12 +37,12 @@
         $controller = new Atores_Controller();
         $controller->Create($data);
 
-        require_once "../../session.php";
+        require_once "../../_session.php";
         AdicionarMensagem('success', 'Ator <strong>criado</strong> com sucesso.');
 
         // redireciona para o index
-        require_once "../../config.php";
-        require_once "../../util.php";
+        require_once "../../_config.php";
+        require_once "../../_util.php";
         redirect("$BASE_URL_ADM/atores");
     }
 

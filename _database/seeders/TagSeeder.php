@@ -3,7 +3,7 @@
 use controllers\Tags_Controller;
 
 require_once __DIR__."/../factories/TagFactory.php";
-require_once __DIR__."/../../controllers/tags_controller.php";
+require_once __DIR__."/../../_controllers/tags_controller.php";
 
 class TagSeeder {
 

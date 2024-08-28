@@ -4,7 +4,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == 'POST') {
 
-    require_once "validate.php";
+    require_once "_validate.php";
     $validate = validate([
         'email' => [$_POST['email'], [
             ['required', 'Preencha seu e-mail.'],
@@ -20,7 +20,7 @@ if ($method == 'POST') {
         $email = $validate['email'];
         $senha = md5($validate['senha']);
 
-        require_once "session.php";
+        require_once "_session.php";
         FazerLogin($email, $senha);
     }
 }

@@ -1,4 +1,4 @@
-<?php include_once "../../util.php"; ?>
+<?php include_once "../../_util.php"; ?>
 <h2><?= $title ?></h2>
 
 <div class="d-flex mb-3 justify-content-between">
