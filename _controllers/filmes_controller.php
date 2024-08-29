@@ -103,7 +103,7 @@ class Filmes_Controller extends Controller {
     function GetAvaliacoes ($id_filme) {
         $list = [];
         try {
-            $sql = "SELECT a.comentario, a.nota, a.data_avaliacao, u.nome as usuario
+            $sql = "SELECT a.comentario, a.nota, a.data_avaliacao, u.nome as usuario, u.foto as foto
                     FROM avaliacoes a
                     INNER JOIN usuarios u ON a.id_usuario = u.id
                     WHERE a.id_filme = :id_filme";

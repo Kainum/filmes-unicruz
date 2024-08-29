@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__."/../_util.php";
+    require_once __DIR__."/../_session.php";
 ?>
 <style>
     .poster {
@@ -50,13 +51,34 @@
         <p><span class="fw-bold">Classind: </span><?= FilmeClassInd($filme['class_ind']) ?></p>
     </div>
 </div>
-<hr class="my-5">
-<div>
-    <h3>Avaliações</h3>
-    <?php
-    
-    echo '<pre>';
-    var_dump($avaliacoes);
-    echo '<pre>';
-    ?>
-</div>
+<hr class="my-4">
+<section>
+    <?php if (EstaLogado()) { ?> 
+        <form class="d-flex" method="post">
+            <div class="w-75 text-secondary">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <label class="text-white" for="nota">Nota: </label>
+                    <select class="form-select" style="width: 100px;" name="nota" id="nota" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                    </select>
+                    <button class="btn btn-success ms-auto" type="submit">Deixe sua Avaliação</button>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" name="comentario" id="comentario"
+                            placeholder="Deixe seu comentário" style="height: 100px" required>
+                    </textarea>
+                    <label for="comentario">Comentário</label>
+                </div>
+            </div>
+        </form>
+    <?php } ?>
+    <h3 class="my-3">Avaliações</h3>
+    <?php foreach ($avaliacoes as $avaliacao) { 
+        require __DIR__."/../_components/avaliacao.php";
+    } ?>
+</section>
