@@ -1,5 +1,14 @@
 <?php
 
+function FotoPerfil ($fileName) {
+    require __DIR__."/_config.php";
+    if (!empty($fileName)) {
+        return "$STORAGE_FOTOS_URL/$fileName";
+    } else {
+        return "$STORAGE_URL/no_profile_picture.png";
+    }
+}
+
 function HoraAtual () {
     date_default_timezone_set("America/Sao_Paulo");
     return date('H:i');

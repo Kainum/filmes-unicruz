@@ -1,3 +1,13 @@
+<?php
+require_once __DIR__."/../_config.php";
+require_once __DIR__."/../_util.php";
+?>
+<style>
+    .img_perfil {
+        width: 250px;
+        height: 250px;
+    }
+</style>
 <div class="row" id="card">
     <h2 class="mb-4">Alterar Perfil</h2>
     <form method="POST" enctype="multipart/form-data" class="col-6 text-secondary">
@@ -23,8 +33,8 @@
         </div>
         <button class="btn btn-primary mt-4 py-2 px-4 rounded-3" type="submit">Alterar</button>
     </form>
-    <div class="min-h-100 bg-info col-6">
-
+    <div class="min-h-100 col-6 d-flex justify-content-center">
+        <img class="img_perfil bg-white rounded-circle" src="<?= FotoPerfil($usuario['foto']) ?>" alt="">
     </div>
 </div>
 <?php include __DIR__."/../_components/message_logger.php" ?>

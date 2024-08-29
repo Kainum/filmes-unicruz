@@ -11,7 +11,7 @@ class UsuarioFactory extends Factory {
             'nome'  => $faker->firstName() . " " . $faker->lastName(),
             'email' => $faker->email(),
             'senha' => $faker->md5(),
-            'foto'  => '',
+            'foto'  => null,
             'admin' => false,
         ];
 

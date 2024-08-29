@@ -1,2 +1,3 @@
 # ignora o diretório vendor
 /vendor
+/_storage/*/*

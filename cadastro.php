@@ -28,7 +28,7 @@ if ($method == 'POST') {
 
 function Cadastrar ($data) {
     $data['senha'] = md5($data['senha']);
-    $data['foto'] = '';
+    $data['foto'] = UploadFoto();
     $data['admin'] = false;
 
     require_once "./_controllers/usuarios_controller.php";
@@ -40,6 +40,25 @@ function Cadastrar ($data) {
     // faz o login automaticamente
     require_once "_session.php";
     FazerLogin($data['email'], $data['senha']);
+}
+
+function UploadFoto () {
+    $foto = $_FILES['foto'];
+    $name = $foto['name'];
+    $tmp_name = $foto['tmp_name'];
+
+    if (!empty($tmp_name)) {
+        require_once "_config.php";
+
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
+        $newName = uniqid() . '.' . $extension;
+
+        move_uploaded_file($tmp_name,"$STORAGE_FOTOS/$newName");
+
+        return $newName;
+    }
+
+    return null;
 }
 
 ?>
@@ -87,8 +106,6 @@ function Cadastrar ($data) {
                     </div>
                 </div>
                 <button class="btn btn-primary mt-4 py-2 px-4 rounded-3" type="submit">Cadastrar</button>
-                <div>
-                </div>
             </form>
         </div>
     </main>

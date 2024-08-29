@@ -34,7 +34,7 @@
                 $validate['id'] =       $usuario['id'];
                 $validate['email'] =    $usuario['email'];
                 $validate['senha'] =    isset($validate['senha']) ? md5($validate['senha']) : $usuario['senha'];
-                $validate['foto'] =     '';
+                $validate['foto'] =     UploadFoto() ?? $usuario['foto'];
                 $validate['admin'] =    $usuario['admin'];
                 Atualizar($validate);
             }
@@ -55,6 +55,25 @@
 
         // faz o login automaticamente
         FazerLogin($data['email'], $data['senha']);
+    }
+
+    function UploadFoto () {
+        $foto = $_FILES['foto'];
+        $name = $foto['name'];
+        $tmp_name = $foto['tmp_name'];
+    
+        if (!empty($tmp_name)) {
+            require_once "../_config.php";
+    
+            $extension = pathinfo($name, PATHINFO_EXTENSION);
+            $newName = uniqid() . '.' . $extension;
+    
+            move_uploaded_file($tmp_name,"$STORAGE_FOTOS/$newName");
+    
+            return $newName;
+        }
+    
+        return null;
     }
 
     $title = "Meu Pefil";
