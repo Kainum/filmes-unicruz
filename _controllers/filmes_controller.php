@@ -106,7 +106,8 @@ class Filmes_Controller extends Controller {
             $sql = "SELECT a.comentario, a.nota, a.data_avaliacao, u.nome as usuario, u.foto as foto
                     FROM avaliacoes a
                     INNER JOIN usuarios u ON a.id_usuario = u.id
-                    WHERE a.id_filme = :id_filme";
+                    WHERE a.id_filme = :id_filme
+                    ORDER BY a.data_avaliacao DESC";
 
             $query = $this->conn->prepare($sql);
             $query->bindParam(':id_filme', $id_filme);

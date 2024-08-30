@@ -59,19 +59,21 @@
                 <div class="d-flex align-items-center gap-2 mb-2">
                     <label class="text-white" for="nota">Nota: </label>
                     <select class="form-select" style="width: 100px;" name="nota" id="nota" required>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5" selected>5</option>
+                        <option value="0" <?= ($avaliacao_do_usuario['nota'] ?? '') == "0" ? 'selected' : '' ?>>0</option>
+                        <option value="1" <?= ($avaliacao_do_usuario['nota'] ?? '') == "1" ? 'selected' : '' ?>>1</option>
+                        <option value="2" <?= ($avaliacao_do_usuario['nota'] ?? '') == "2" ? 'selected' : '' ?>>2</option>
+                        <option value="3" <?= ($avaliacao_do_usuario['nota'] ?? '') == "3" ? 'selected' : '' ?>>3</option>
+                        <option value="4" <?= ($avaliacao_do_usuario['nota'] ?? '') == "4" ? 'selected' : '' ?>>4</option>
+                        <option value="5" <?= ($avaliacao_do_usuario['nota'] ?? '') == "5" ? 'selected' : '' ?>>5</option>
                     </select>
-                    <button class="btn btn-success ms-auto" type="submit">Deixe sua Avaliação</button>
+                    <button class="btn btn-success ms-auto" type="submit">
+                        <?= isset($avaliacao_do_usuario) ? 'Altere sua Avaliação' : 'Deixe sua Avaliação' ?>
+                    </button>
                 </div>
                 <div class="form-floating">
                     <textarea class="form-control" name="comentario" id="comentario"
-                            placeholder="Deixe seu comentário" style="height: 100px" required>
-                    </textarea>
+                            placeholder="Deixe seu comentário" style="height: 100px"
+                            required><?= $avaliacao_do_usuario['comentario'] ?? '' ?></textarea>
                     <label for="comentario">Comentário</label>
                 </div>
             </div>
